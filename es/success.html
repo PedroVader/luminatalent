@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud Recibida | Lumina Talent</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Manrope', 'sans-serif'] },
+          colors: {
+            primary: { DEFAULT: '#018cf1', dark: '#0177cc', light: '#e0f2fe' },
+            lilac: { 50: '#fcfbff', 200: '#e9e4ff', 300: '#b6a7ff', 500: '#7c3aed' },
+            slate: { 800: '#1e293b', 600: '#475569', 400: '#94a3b8', 50: '#f8fafc' }
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+            'scale-in': 'scaleIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            scaleIn: {
+              '0%': { transform: 'scale(0.8)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Mismo Grid que en Apply */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(1, 140, 241, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(1, 140, 241, 0.04) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50/20 text-slate-800 antialiased overflow-hidden relative h-screen flex items-center justify-center">
+
+  <div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern h-full w-full"></div>
+    <div class="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] bg-lilac-300/20 rounded-full blur-[120px] animate-pulse" style="animation-duration: 8s;"></div>
+    <div class="absolute bottom-[10%] right-[0%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
+  </div>
+
+  <main class="max-w-lg w-full mx-6 relative z-10 animate-fade-up">
+    
+    <div class="bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-white/50 p-10 md:p-14 text-center relative overflow-hidden">
+      
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+      
+      <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 animate-scale-in shadow-sm border border-green-100">
+        <span class="iconify text-4xl text-green-500 drop-shadow-sm" data-icon="solar:verified-check-bold-duotone"></span>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+        Solicitud Recibida
+      </h1>
+      
+      <p class="text-slate-500 text-lg leading-relaxed mb-8 font-medium">
+        Hemos recibido tu información correctamente. Nuestro equipo de casting revisará tu perfil en las próximas <strong class="text-slate-700">24-48 horas</strong>.
+      </p>
+
+      <div class="bg-slate-50/80 rounded-xl p-4 mb-8 border border-slate-200/50 text-sm text-slate-500">
+        <p>Si tu perfil encaja con nuestra cartera actual, te contactaremos directamente vía <strong>Email</strong> o <strong>Instagram</strong>.</p>
+      </div>
+
+      <a href="index.html" class="group w-full inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary text-white py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5">
+        Volver al Inicio
+        <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="solar:home-2-bold-duotone"></span>
+      </a>
+
+    </div>
+
+    <p class="text-center text-slate-400 text-xs font-medium mt-8 uppercase tracking-widest">
+      Lumina Talent Agency
+    </p>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          // since particles fall down, start a bit higher than random
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            colors: ['#018cf1', '#a78bfa', '#ffffff']
+          }));
+          confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            colors: ['#018cf1', '#a78bfa', '#ffffff']
+          }));
+        }, 250);
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply to Join | Lumina Talent</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Manrope', 'sans-serif'] },
+          colors: {
+            primary: { DEFAULT: '#018cf1', dark: '#0177cc', light: '#e0f2fe' },
+            lilac: { 50: '#fcfbff', 200: '#e9e4ff', 300: '#b6a7ff', 500: '#7c3aed' },
+            slate: { 800: '#1e293b', 600: '#475569', 400: '#94a3b8', 50: '#f8fafc' }
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+            'infinite-scroll': 'infinite-scroll 40s linear infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'infinite-scroll': {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Premium Bluish Grid */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(1, 140, 241, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(1, 140, 241, 0.04) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+
+    /* Mobile Mockup Transitions */
+    .phone-mockup { transition: transform 0.3s ease; }
+
+    /* Prevent horizontal overflow */
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body class="bg-slate-50/20 text-slate-800 antialiased relative">
+
+  <div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern h-full w-full"></div>
+    
+    <div class="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] bg-lilac-300/20 rounded-full blur-[120px] animate-pulse" style="animation-duration: 8s;"></div>
+    
+    <div class="absolute bottom-[10%] right-[0%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
+  </div>
+
+  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm supports-[backdrop-filter]:bg-white/60">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+        <img src="../images/logo-lumina.png" alt="Lumina Talent" class="h-10 md:h-16 w-auto object-contain">
+      </a>
+      <a href="index.html" class="text-sm font-bold text-slate-500 hover:text-primary transition-colors flex items-center gap-2">
+        <span class="iconify" data-icon="solar:arrow-left-linear"></span> Back
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-20 min-h-screen flex flex-col lg:flex-row">
+    
+    <section class="lg:w-1/2 bg-transparent relative overflow-hidden flex flex-col justify-center py-20 px-8 lg:px-16 lg:fixed lg:h-full lg:top-0 lg:left-0 z-0 pointer-events-none lg:pointer-events-auto">
+      
+      <div class="relative z-10 max-w-lg mx-auto lg:max-w-none text-center lg:text-left mt-8 lg:mt-0">
+        <div class="mb-12 animate-fade-up mt-20">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight drop-shadow-sm">
+            Scale Your Revenue to <span class="text-primary">Elite Levels</span>.
+          </h1>
+          <p class="text-slate-600 text-lg font-medium max-w-md mx-auto lg:mx-0">
+            Join the top 1% of creators who stopped playing games and started building an empire.
+          </p>
+        </div>
+
+        <div class="relative flex items-center justify-center lg:justify-start h-[300px] animate-fade-up" style="animation-delay: 0.2s">
+            <div class="phone-mockup relative w-[160px] rounded-[1.8rem] border-[5px] border-slate-900 bg-slate-900 shadow-xl shadow-primary/10 overflow-hidden z-10 translate-x-12 translate-y-2 rotate-[-6deg]">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-4 bg-black rounded-b-lg z-30"></div>
+              <img src="../images/dashboard-tiktok-es.jpeg" alt="TikTok Dashboard" class="w-full h-auto object-cover rounded-[1.6rem]">
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-[1.6rem]"></div>
+            </div>
+            <div class="phone-mockup relative w-[180px] rounded-[2rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl shadow-primary/20 overflow-hidden z-20 -ml-4 rotate-[4deg]">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-5 bg-black rounded-b-xl z-30"></div>
+              <img src="../images/dashboard-of-en.png" alt="OnlyFans Earnings" class="w-full h-auto object-cover rounded-[1.8rem]">
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-[1.8rem]"></div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:w-1/2 lg:ml-auto bg-white/70 backdrop-blur-xl border-l border-white/20 relative z-10 flex flex-col min-h-screen supports-[backdrop-filter]:bg-white/60">
+      
+      <div class="flex-grow flex items-center justify-center py-20 px-6 lg:px-16">
+        <div class="w-full max-w-lg">
+          
+          <div class="mb-10">
+            <div class="h-1 w-full bg-slate-200/50 rounded-full overflow-hidden">
+                <div id="progressBar" class="h-full bg-primary transition-all duration-500 ease-out" style="width: 33%"></div>
+            </div>
+            <p class="text-right text-xs font-bold text-slate-400 mt-2">Step <span id="stepCount">1</span> of 3</p>
+          </div>
+
+          <form id="applicationForm" class="relative">
+              
+              <div class="form-step active transition-all duration-500" data-step="1">
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Identity</h3>
+                <p class="text-slate-500 text-sm mb-8">Tell us who you are and where to find you.</p>
+                
+                <div class="space-y-6">
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
+                    <input type="text" placeholder="e.g. Elena K." class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Email</label>
+                    <input type="email" placeholder="you@email.com" class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Instagram / TikTok (@Handle)</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 iconify" data-icon="ph:at-bold"></span>
+                        <input type="text" placeholder="your_handle" class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-10 flex justify-end">
+                  <button type="button" onclick="nextStep(2)" class="bg-slate-900 hover:bg-primary text-white px-8 py-3 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg hover:shadow-primary/30">
+                    Next Step <span class="iconify" data-icon="solar:arrow-right-linear"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-step hidden opacity-0 translate-x-8 transition-all duration-500" data-step="2">
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Current Metrics</h3>
+                <p class="text-slate-500 text-sm mb-8">We need to know your starting point.</p>
+
+                <div class="space-y-6">
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Monthly Revenue (OnlyFans)</label>
+                    <div class="grid grid-cols-2 gap-3">
+                      <label class="cursor-pointer group">
+                        <input type="radio" name="revenue" class="peer sr-only">
+                        <div class="px-4 py-3 rounded-xl border border-slate-200 bg-white/50 backdrop-blur-sm text-center text-sm font-bold text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all hover:bg-white/80">
+                          $0 - $1k
+                        </div>
+                      </label>
+                      <label class="cursor-pointer group">
+                        <input type="radio" name="revenue" class="peer sr-only">
+                        <div class="px-4 py-3 rounded-xl border border-slate-200 bg-white/50 backdrop-blur-sm text-center text-sm font-bold text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all hover:bg-white/80">
+                          $1k - $5k
+                        </div>
+                      </label>
+                      <label class="cursor-pointer group">
+                        <input type="radio" name="revenue" class="peer sr-only">
+                        <div class="px-4 py-3 rounded-xl border border-slate-200 bg-white/50 backdrop-blur-sm text-center text-sm font-bold text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all hover:bg-white/80">
+                          $5k - $20k
+                        </div>
+                      </label>
+                      <label class="cursor-pointer group">
+                        <input type="radio" name="revenue" class="peer sr-only">
+                        <div class="px-4 py-3 rounded-xl border border-slate-200 bg-white/50 backdrop-blur-sm text-center text-sm font-bold text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all hover:bg-white/80">
+                          $20k+
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Followers (Approx)</label>
+                    <input type="number" placeholder="e.g. 50000" class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
+                  </div>
+                </div>
+
+                <div class="mt-10 flex justify-between items-center">
+                  <button type="button" onclick="nextStep(1)" class="text-slate-400 hover:text-slate-600 font-bold text-sm">Back</button>
+                  <button type="button" onclick="nextStep(3)" class="bg-slate-900 hover:bg-primary text-white px-8 py-3 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg hover:shadow-primary/30">
+                    Next Step <span class="iconify" data-icon="solar:arrow-right-linear"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-step hidden opacity-0 translate-x-8 transition-all duration-500" data-step="3">
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Your Ambitions</h3>
+                <p class="text-slate-500 text-sm mb-8">What is stopping you from scaling right now?</p>
+
+                <div class="space-y-6">
+                  <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Biggest Obstacle</label>
+                    <textarea rows="4" placeholder="e.g. Chatting takes all my time, I don't know what to post, stuck at 5k..." class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none backdrop-blur-sm"></textarea>
+                  </div>
+                  
+                  <div class="p-4 bg-blue-50/50 backdrop-blur-sm rounded-xl border border-blue-100/50 flex items-start gap-3">
+                    <span class="iconify text-primary text-xl mt-0.5 shrink-0" data-icon="solar:shield-check-bold"></span>
+                    <p class="text-sm text-slate-600">
+                      By submitting, you confirm you are 18+. Your data is 100% confidential and encrypted.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-10 flex justify-between items-center">
+                  <button type="button" onclick="nextStep(2)" class="text-slate-400 hover:text-slate-600 font-bold text-sm">Back</button>
+                  <button type="submit" class="bg-primary hover:bg-primary-dark text-white px-10 py-3 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5">
+                    Submit Application
+                    <span class="iconify text-lg" data-icon="solar:rocket-2-bold-duotone"></span>
+                  </button>
+                </div>
+              </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="w-full border-t border-white/20 pt-8 pb-8 mt-auto bg-white/40 backdrop-blur-md">
+        <div class="max-w-full mx-auto">
+          <p class="text-center text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Dominating Platforms</p>
+          
+          <div class="relative w-full overflow-hidden mask-fade-edges">
+              <div class="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white/80 to-transparent z-10 pointer-events-none"></div>
+              <div class="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-white/80 to-transparent z-10 pointer-events-none"></div>
+    
+              <div class="inline-flex w-full flex-nowrap overflow-hidden">
+                <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:onlyfans"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:instagram"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:tiktok"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:twitter"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:patreon"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:twitch"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:snapchat"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:reddit"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:onlyfans"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:instagram"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:tiktok"></span></li>
+                   <li><span class="iconify text-3xl text-slate-400" data-icon="simple-icons:twitter"></span></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="py-16 bg-white/40 backdrop-blur-md border-t border-white/20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+            <div class="md:col-span-5">
+              <a href="#" class="flex items-center hover:opacity-90 transition-opacity mb-6">
+                <img src="../images/logo-lumina.png" alt="Lumina Talent" class="h-8 md:h-10 w-auto object-contain">
+              </a>
+              <p class="text-slate-500 leading-relaxed mb-8 max-w-sm text-sm">
+                The premier management partner for elite digital creators. We blend data, technology, and strategy to build 7-figure personal brands.
+              </p>
+              <div class="flex gap-3">
+                <a href="#" class="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-200">
+                  <span class="iconify" data-icon="ph:instagram-logo-bold"></span>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-200">
+                  <span class="iconify" data-icon="ph:twitter-logo-bold"></span>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-200">
+                  <span class="iconify" data-icon="ph:telegram-logo-bold"></span>
+                </a>
+              </div>
+            </div>
+
+            <div class="md:col-span-2">
+              <h4 class="font-bold text-slate-800 mb-6 text-sm">Agency</h4>
+              <ul class="space-y-4 text-xs text-slate-500">
+                <li><a href="index.html#expertise" class="hover:text-primary transition-colors">Expertise</a></li>
+                <li><a href="index.html#results" class="hover:text-primary transition-colors">Results</a></li>
+                <li><a href="index.html#reviews" class="hover:text-primary transition-colors">Stories</a></li>
+                <li><a href="apply.html" class="hover:text-primary transition-colors">Join Roster</a></li>
+              </ul>
+            </div>
+
+            <div class="md:col-span-2">
+              <h4 class="font-bold text-slate-800 mb-6 text-sm">Legal</h4>
+              <ul class="space-y-4 text-xs text-slate-500">
+                <li><a href="privacy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="terms.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
+              </ul>
+            </div>
+
+            <div class="md:col-span-3">
+              <h4 class="font-bold text-slate-800 mb-6 text-sm">Contact</h4>
+              <ul class="space-y-4 text-xs text-slate-500">
+                <li><a href="mailto:talent@luminatalent.com" class="hover:text-primary transition-colors">info@luminatalent.com</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+            <p>&copy; 2025 Lumina Talent Agency. All rights reserved.</p>
+            <p>Designed for the Elite.</p>
+          </div>
+        </div>
+      </footer>
+
+    </section>
+
+  </main>
+
+  <script>
+    // MULTISTEP LOGIC
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.form-step').forEach(step => {
+        step.classList.add('hidden', 'opacity-0', 'translate-x-8');
+        step.classList.remove('active');
+      });
+
+      const currentStep = document.querySelector(`.form-step[data-step="${stepNumber}"]`);
+      currentStep.classList.remove('hidden');
+      
+      setTimeout(() => {
+        currentStep.classList.remove('opacity-0', 'translate-x-8');
+        currentStep.classList.add('active');
+      }, 10);
+
+      const progress = document.getElementById('progressBar');
+      const stepCount = document.getElementById('stepCount');
+      
+      stepCount.innerText = stepNumber;
+      if(stepNumber === 1) progress.style.width = '33%';
+      if(stepNumber === 2) progress.style.width = '66%';
+      if(stepNumber === 3) progress.style.width = '100%';
+    }
+
+    // SUBMIT HANDLER
+    const form = document.getElementById('applicationForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const btn = form.querySelector('button[type="submit"]');
+      
+      // Loading visual feedback
+      btn.innerHTML = '<span class="iconify animate-spin text-xl" data-icon="solar:spinner-linear"></span> Sending...';
+      btn.classList.add('opacity-75', 'cursor-not-allowed');
+      
+      setTimeout(() => {
+        // Redirect to Success Page (Ensure en/success.html exists)
+        window.location.href = 'success.html'; 
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

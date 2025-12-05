@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Talent | Gestión de Creadores de Élite</title>
+  <meta name="description" content="Lumina Talent es la agencia líder para creadores del top 1%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#018cf1', /* OF Blue */
+              dark: '#0177cc',
+              light: '#e0f2fe',
+            },
+            lilac: {
+              50: '#fcfbff',
+              100: '#f2f8ff',
+              200: '#e9e4ff',
+              300: '#b6a7ff',
+              500: '#7c3aed',
+            },
+            slate: {
+              800: '#1e293b',
+              600: '#475569',
+              400: '#94a3b8',
+              50: '#f8fafc',
+            }
+          },
+          backgroundImage: {
+            'gradient-brand': 'linear-gradient(135deg, #018cf1 0%, #a78bfa 100%)',
+            'gradient-hero': 'linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%)',
+          },
+          boxShadow: {
+            'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+            'glow': '0 0 20px rgba(1, 140, 241, 0.15)',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+            'infinite-scroll': 'infinite-scroll 40s linear infinite',
+            'infinite-scroll-reverse': 'infinite-scroll-reverse 40s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'infinite-scroll': {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-100%)' },
+            },
+            'infinite-scroll-reverse': {
+              from: { transform: 'translateX(-100%)' },
+              to: { transform: 'translateX(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .bg-noise { opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+    
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(1, 140, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(1, 140, 241, 0.03) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    }
+
+    /* Lógica de rotación para FAQ */
+    .faq-btn .iconify {
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    .faq-item.active .iconify {
+      transform: rotate(45deg);
+      color: #018cf1; 
+    }
+    
+    /* Ocultar scrollbar */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased overflow-x-hidden relative">
+
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-[10%] -right-[5%] w-[600px] h-[600px] bg-lilac-200 rounded-full blur-[100px] opacity-40 animate-pulse"></div>
+    <div class="absolute top-[40%] -left-[10%] w-[500px] h-[500px] bg-primary-light rounded-full blur-[100px] opacity-50"></div>
+    <div class="bg-noise absolute inset-0 w-full h-full"></div>
+  </div>
+
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      
+      <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+        <img src="../images/logo-lumina.png" alt="Lumina Talent - Agencia OnlyFans" class="h-12 md:h-16 w-auto object-contain">
+      </a>
+
+      <div class="hidden md:flex items-center gap-4">
+        
+        <a href="#expertise" class="px-4 py-2 text-sm font-bold text-slate-600 rounded-full transition-all duration-300 hover:text-primary hover:bg-slate-50 hover:shadow-sm">
+          Servicios
+        </a>
+        <a href="#results" class="px-4 py-2 text-sm font-bold text-slate-600 rounded-full transition-all duration-300 hover:text-primary hover:bg-slate-50 hover:shadow-sm">
+          Resultados
+        </a>
+        
+        <a href="apply.html" class="group relative inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white text-sm font-bold pl-1 pr-6 py-1 rounded-full shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-primary/50 hover:-translate-y-0.5 border border-white/10 ml-2">
+            <span class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform duration-300">
+              <span class="iconify text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" data-icon="solar:arrow-right-up-linear"></span>
+            </span>
+            <span class="tracking-wide">Aplicar Ahora</span>
+        </a>
+
+        <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200 shadow-inner gap-1 ml-2">
+          <a href="../en/index.html" class="px-3 py-1.5 text-slate-500 text-xs font-semibold rounded-md hover:bg-white/50 transition-colors">EN</a>
+          <span class="px-3 py-1.5 bg-white text-primary text-xs font-bold rounded-md shadow-sm cursor-default">ES</span>
+        </div>
+      </div>
+
+      <button id="mobileToggle" class="md:hidden p-2 text-slate-800 hover:text-primary transition-colors">
+        <span class="iconify text-2xl" data-icon="solar:hamburger-menu-linear"></span>
+      </button>
+    </div>
+    
+    <div id="mobileMenu" class="hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 p-6 flex-col gap-4 shadow-xl md:hidden">
+      <a href="#expertise" class="text-slate-600 font-bold text-lg p-2">Servicios</a>
+      <a href="#results" class="text-slate-600 font-bold text-lg p-2">Resultados</a>
+      <a href="apply.html" class="text-primary font-bold text-lg p-2 flex items-center gap-2">
+        Aplicar Ahora <span class="iconify" data-icon="solar:arrow-right-up-linear"></span>
+      </a>
+      <div class="flex gap-4 p-2 border-t border-slate-100 mt-2 pt-4">
+        <a href="../en/index.html" class="font-medium text-slate-500">EN</a>
+        <span class="font-bold text-primary">ES</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    
+    <section class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden font-sans">
+
+        <style>
+          @keyframes wave-drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+          }
+          .wave-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: wave-drift 20s infinite linear;
+          }
+          .wave-1 { background: rgba(14, 165, 233, 0.15); width: 600px; height: 600px; top: 20%; left: 20%; animation-duration: 25s; }
+          .wave-2 { background: rgba(56, 189, 248, 0.15); width: 500px; height: 500px; bottom: 20%; right: 20%; animation-duration: 30s; animation-direction: reverse; }
+          
+          .phone-mockup {
+            transition: transform 0.3s ease; 
+          }
+        </style>
+      
+        <div class="absolute inset-0 -z-20 h-full w-full bg-white bg-grid-pattern"></div>
+        <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+           <div class="wave-blob wave-1"></div>
+           <div class="wave-blob wave-2"></div>
+        </div>
+      
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+          
+          <div class="flex flex-col items-center lg:items-start text-center lg:text-left animate-fade-up">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-50 border border-slate-200 rounded-full mb-8 hover:border-primary/30 transition-colors cursor-default shadow-sm backdrop-blur-sm bg-white/50">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                Aceptando al Top 1% de Creadores <span class="text-primary">OnlyFans</span>
+              </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+              Tu Influencia, <br>
+              Tu <span class="text-primary relative inline-block">
+                Imperio.
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
+                </svg>
+              </span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-xl leading-relaxed font-medium">
+                Deja de intercambiar tiempo por dinero. Proveemos la infraestructura de élite para escalar tu 
+                <span class="inline-flex items-center gap-1 text-[#00aff0] font-black relative top-1 mx-1">
+                  <span class="iconify text-2xl" data-icon="simple-icons:onlyfans"></span>
+                  OnlyFans
+                </span>
+                más allá de <strong class="text-slate-900 bg-slate-100 px-1 rounded">$50k/mes</strong> mientras recuperas tu libertad.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a href="apply.html" class="group relative inline-flex w-full sm:w-auto items-center justify-center sm:justify-start gap-3 bg-primary hover:bg-primary-dark text-white text-sm font-bold pl-1 pr-6 py-3 rounded-full shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-primary/50 hover:-translate-y-0.5 border border-white/10">
+                  <span class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0">
+                    <span class="iconify text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" data-icon="solar:rocket-2-bold-duotone"></span>
+                  </span>
+                  <span class="tracking-wide">Escalar Ingresos</span>
+                </a>
+              <a href="#how" class="w-full sm:w-auto px-8 py-3 text-slate-600 border border-slate-200 bg-white font-bold rounded-full hover:border-primary hover:text-primary transition-all flex justify-center items-center gap-2 text-sm shadow-sm hover:shadow-md bg-white/80 backdrop-blur-sm">
+                Cómo Funciona
+              </a>
+            </div>
+      
+            <div class="mt-8 flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <div class="flex -space-x-3">
+                  <img src="/images/modelo-lumina.jpg" alt="Creator" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
+                  <img src="/images/modelo-lumina-2.webp" alt="Creator" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
+                  <img src="/images/modelo-lumina-3.jpg" alt="Creator" class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm">
+                  <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold shadow-sm relative z-10">99+</div>
+                </div>
+                <span>Creadores Asociados</span>
+            </div>
+          </div>
+      
+          <div class="relative flex justify-center lg:justify-end items-center animate-fade-up" style="animation-delay: 0.2s;">
+            
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-primary/20 to-purple-200/20 rounded-full blur-3xl -z-10"></div>
+      
+            <div class="relative flex items-center justify-center">
+                <div class="phone-mockup relative w-[180px] md:w-[200px] rounded-[2rem] border-[6px] border-slate-900 bg-slate-900 shadow-xl shadow-primary/10 overflow-hidden z-10 translate-x-8 translate-y-4 rotate-[-3deg]">
+                  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-5 bg-black rounded-b-lg z-30"></div>
+                  <img src="/images/dashboard-tiktok-es.jpeg" alt="TikTok Dashboard" class="w-full h-auto object-cover rounded-[1.8rem]">
+                  <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-[1.8rem]"></div>
+                </div>
+                
+                <div class="phone-mockup relative w-[200px] md:w-[220px] rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 shadow-2xl shadow-primary/20 overflow-hidden z-20 -ml-8 rotate-[2deg]">
+                  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-30"></div>
+                  <img src="/images/dashboard-of-es.png" alt="OnlyFans Earnings Dashboard" class="w-full h-auto object-cover rounded-[2.2rem]">
+                  <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-[2.2rem]"></div>
+                </div>
+            </div>
+      
+          </div>
+      
+        </div>
+      
+        <div class="w-full border-t border-slate-100 pt-8 relative z-10">
+            <div class="max-w-7xl mx-auto px-6">
+              <p class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">Dominando Plataformas</p>
+              
+              <div class="relative w-full overflow-hidden mask-fade-edges">
+                  <div class="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                  <div class="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        
+                  <div class="inline-flex w-full flex-nowrap overflow-hidden">
+                    <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#00aff0] transition-colors duration-300" data-icon="simple-icons:onlyfans"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#E1306C] transition-colors duration-300" data-icon="simple-icons:instagram"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-black transition-colors duration-300" data-icon="simple-icons:tiktok"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#1DA1F2] transition-colors duration-300" data-icon="simple-icons:twitter"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF424D] transition-colors duration-300" data-icon="simple-icons:patreon"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#9146FF] transition-colors duration-300" data-icon="simple-icons:twitch"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FFFC00] hover:drop-shadow-sm transition-colors duration-300" data-icon="simple-icons:snapchat"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF4500] transition-colors duration-300" data-icon="simple-icons:reddit"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF0000] transition-colors duration-300" data-icon="simple-icons:youtube"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#26A5E4] transition-colors duration-300" data-icon="simple-icons:telegram"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#5865F2] transition-colors duration-300" data-icon="simple-icons:discord"></span></li>
+                        
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#00aff0] transition-colors duration-300" data-icon="simple-icons:onlyfans"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#E1306C] transition-colors duration-300" data-icon="simple-icons:instagram"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-black transition-colors duration-300" data-icon="simple-icons:tiktok"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#1DA1F2] transition-colors duration-300" data-icon="simple-icons:twitter"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF424D] transition-colors duration-300" data-icon="simple-icons:patreon"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#9146FF] transition-colors duration-300" data-icon="simple-icons:twitch"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FFFC00] hover:drop-shadow-sm transition-colors duration-300" data-icon="simple-icons:snapchat"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF4500] transition-colors duration-300" data-icon="simple-icons:reddit"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF0000] transition-colors duration-300" data-icon="simple-icons:youtube"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#26A5E4] transition-colors duration-300" data-icon="simple-icons:telegram"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#5865F2] transition-colors duration-300" data-icon="simple-icons:discord"></span></li>
+
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#00aff0] transition-colors duration-300" data-icon="simple-icons:onlyfans"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#E1306C] transition-colors duration-300" data-icon="simple-icons:instagram"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-black transition-colors duration-300" data-icon="simple-icons:tiktok"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#1DA1F2] transition-colors duration-300" data-icon="simple-icons:twitter"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#FF424D] transition-colors duration-300" data-icon="simple-icons:patreon"></span></li>
+                       <li><span class="iconify text-3xl text-slate-300 hover:text-[#9146FF] transition-colors duration-300" data-icon="simple-icons:twitch"></span></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+        </div>
+      
+    </section>
+
+    <section id="expertise" class="py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+          <span class="inline-block px-3 py-1 bg-lilac-100 text-primary text-xs font-bold rounded-full uppercase tracking-wider mb-4">Nuestra Experiencia</span>
+          <h2 class="text-4xl font-bold text-slate-800 mb-4">El Ecosistema Lumina</h2>
+          <p class="text-slate-600 text-lg">No solo publicamos contenido. Construimos una máquina de ventas sofisticada alrededor de tu marca usando datos propietarios y equipos de élite.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="solar:chat-round-dots-bold-duotone"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Ventas 24/7 (Chatting)</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Nuestro equipo de chatters de élite opera las 24 horas. No usamos bots; construimos conexiones psicológicas genuinas que maximizan las propinas.</p>
+          </div>
+
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8" style="transition-delay: 100ms;">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="solar:graph-up-bold-duotone"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Estrategia de Embudo Viral</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Dominamos los algoritmos de TikTok, IG Reels y Reddit. Dirigimos millones de vistas cualificadas hacia un embudo de alta conversión.</p>
+          </div>
+
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8" style="transition-delay: 200ms;">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="solar:crown-star-bold-duotone"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Marca y Estética</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Pasa de "amateur" a "icono". Nuestros directores creativos refinan tu imagen y aseguran que cada pieza de contenido grite calidad premium.</p>
+          </div>
+          
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="solar:shield-check-bold-duotone"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Auditoría y Protección</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Eliminación completa de contenido filtrado (DMCA). Además, auditamos constantemente tus precios para asegurar que no pierdes dinero.</p>
+          </div>
+
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8" style="transition-delay: 100ms;">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="solar:magic-stick-3-bold-duotone"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Gestión de Contenido</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Deja de estresarte por qué publicar. Proveemos guiones detallados, programamos todo y optimizamos los horarios de publicación.</p>
+          </div>
+
+          <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-card hover:border-lilac-300 hover:-translate-y-1 transition-all duration-300 animate-on-scroll opacity-0 translate-y-8" style="transition-delay: 200ms;">
+            <div class="w-14 h-14 bg-lilac-100 rounded-xl flex items-center justify-center text-2xl text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span class="iconify" data-icon="ph:handshake-bold"></span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Red de Riqueza</h3>
+            <p class="text-slate-600 leading-relaxed text-sm">Acceso a nuestra red exclusiva para colaboraciones (SFS) con otros creadores del top 0.1%, duplicando tu tráfico de la noche a la mañana.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-20 overflow-hidden font-sans text-center md:text-left" id="results">
+        <div class="absolute inset-0 -z-20 h-full w-full bg-white bg-grid-pattern"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+      
+        <div class="absolute top-10 left-0 right-0 flex items-center justify-center z-0 pointer-events-none select-none">
+          <h2 class="text-[18vw] md:text-[12rem] font-black uppercase tracking-widest text-transparent" 
+              style="-webkit-text-stroke: 1px rgba(0,0,0,0.03);">
+            Historias
+          </h2>
+        </div>
+      
+        <div class="relative z-30 container mx-auto px-6 text-center mb-16">
+          <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-slate-200">
+            Reseñas Verificadas
+          </span>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+            Amado por el <span class="text-primary">Top 1%</span>
+          </h2>
+          <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            No te quedes solo con nuestra palabra. Escucha a las creadoras que han transformado sus carreras y recuperado su libertad con nuestra gestión.
+          </p>
+        </div>
+      
+        <div class="absolute top-60 left-0 right-0 h-20 to-transparent z-20 pointer-events-none"></div>
+      
+        <div class="flex overflow-x-auto md:overflow-hidden snap-x snap-mandatory scrollbar-hide h-[500px] md:h-[650px] relative z-10" style="gap: 4px;">
+          
+          <div class="min-w-[85vw] md:min-w-0 md:flex-1 relative overflow-hidden group snap-center border-r border-white">
+            <img src="/images/model-1.webp" alt="Elena K." class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]">
+            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-center backdrop-blur-[2px]">
+              <div class="flex gap-1 mb-4 animate-pulse"><span class="text-yellow-400 text-xl">★★★★★</span></div>
+              <p class="text-white text-lg font-medium leading-relaxed mb-6 max-w-[280px] drop-shadow-md">"Estaba estancada en $8k/mes. <span class="text-purple-300 font-bold bg-purple-900/50 px-1 rounded">Llegué a $45k en 60 días</span>. Realmente entienden la psicología."</p>
+              <div class="flex flex-col items-center gap-1">
+                <span class="text-white font-bold text-xl tracking-wide drop-shadow-md">Elena K.</span>
+                <span class="px-3 py-1 mt-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-[0.2em] border border-white/30">Top 0.1% Creadora</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="min-w-[85vw] md:min-w-0 md:flex-1 relative overflow-hidden group snap-center border-r border-white">
+            <img src="/images/model-2.webp" alt="Sophie X." class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]">
+            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-center backdrop-blur-[2px]">
+              <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-xl">★★★★★</span></div>
+              <p class="text-white text-lg font-medium leading-relaxed mb-6 max-w-[280px] drop-shadow-md">"No solo gestionan; son mentores. <span class="text-purple-300 font-bold bg-purple-900/50 px-1 rounded">Por fin me siento una CEO</span>, no solo una modelo."</p>
+              <div class="flex flex-col items-center gap-1">
+                <span class="text-white font-bold text-xl tracking-wide drop-shadow-md">Sophie X.</span>
+                <span class="px-3 py-1 mt-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-[0.2em] border border-white/30">Rebranding Total</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="min-w-[85vw] md:min-w-0 md:flex-1 relative overflow-hidden group snap-center border-r border-white">
+            <img src="/images/model-3.webp" alt="Isabella R." class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]">
+            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-center backdrop-blur-[2px]">
+              <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-xl">★★★★★</span></div>
+              <p class="text-white text-lg font-medium leading-relaxed mb-6 max-w-[280px] drop-shadow-md">"Pagos instantáneos, reportes transparentes. <span class="text-purple-300 font-bold bg-purple-900/50 px-1 rounded">La mejor decisión de negocio</span> que he tomado."</p>
+              <div class="flex flex-col items-center gap-1">
+                <span class="text-white font-bold text-xl tracking-wide drop-shadow-md">Isabella R.</span>
+                <span class="px-3 py-1 mt-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-[0.2em] border border-white/30">Top 0.2%</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="min-w-[85vw] md:min-w-0 md:flex-1 relative overflow-hidden group snap-center border-r border-white">
+            <img src="/images/model-4.webp" alt="Mia L." class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]">
+            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-center backdrop-blur-[2px]">
+              <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-xl">★★★★★</span></div>
+              <p class="text-white text-lg font-medium leading-relaxed mb-6 max-w-[280px] drop-shadow-md">"De $3k a <span class="text-purple-300 font-bold bg-purple-900/50 px-1 rounded">$28k en 90 días</span>. Su estrategia viral es otro nivel."</p>
+              <div class="flex flex-col items-center gap-1">
+                <span class="text-white font-bold text-xl tracking-wide drop-shadow-md">Mia L.</span>
+                <span class="px-3 py-1 mt-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-[0.2em] border border-white/30">Top 0.3%</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="min-w-[85vw] md:min-w-0 md:flex-1 relative overflow-hidden group snap-center">
+            <img src="/images/model-5.webp" alt="Ava M." class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]">
+            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-center backdrop-blur-[2px]">
+              <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-xl">★★★★★</span></div>
+              <p class="text-white text-lg font-medium leading-relaxed mb-6 max-w-[280px] drop-shadow-md">"Me devolvieron mi vida. <span class="text-purple-300 font-bold bg-purple-900/50 px-1 rounded">No más jornadas de 16 horas</span>."</p>
+              <div class="flex flex-col items-center gap-1">
+                <span class="text-white font-bold text-xl tracking-wide drop-shadow-md">Ava M.</span>
+                <span class="px-3 py-1 mt-1 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold rounded-full uppercase tracking-[0.2em] border border-white/30">Top 0.4%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none"></div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white font-sans">
+  
+        <div class="max-w-7xl mx-auto px-6">
+          
+          <div class="text-center mb-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+            <span class="text-primary font-bold uppercase tracking-widest text-xs mb-3 block">FAQ</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Preguntas Frecuentes</h2>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+              Todo lo que necesitas saber sobre comenzar tu propia agencia y nuestro modelo de asociación.
+            </p>
+          </div>
+      
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+            
+            <div class="flex flex-col gap-4">
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none transition-opacity group-hover:opacity-100"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+                
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿De qué trata esta llamada?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    El propósito de la llamada es brindarte más información sobre cómo iniciar tu propia agencia de gestión de OnlyFans. No es una llamada de venta agresiva, sino una oportunidad para que ambas partes se conozcan mejor.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Con quién hablaré?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Hablarás con uno de los ejecutivos senior de nuestra empresa, quien podrá aclarar cualquier duda compleja que tengas sobre los detalles de nuestra oferta y el modelo de negocio en general.
+                  </div>
+                </div>
+              </div>
+
+               <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Por qué ayudan a otros en lugar de hacerlo ustedes mismos?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Buscamos crecer rápido. Al ayudar a otras personas a empezar, tenemos el potencial de escalar exponencialmente. No nos preocupa la cuota de mercado porque hay demasiadas modelos buscando promoción.
+                  </div>
+                </div>
+              </div>
+      
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Cómo conseguiré las modelos?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Si comienzas con nuestra franquicia, aprenderás nuestras estrategias secretas de adquisición de clientes que nos han permitido escalar hasta convertirnos en la agencia más grande del mundo.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Cuánto cuesta todo?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                     La tarifa varía según la región. Típicamente, hay una <strong>Tarifa Inicial de Franquicia de $22,000.00</strong> para asegurar los derechos, y una regalía continua.
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="flex flex-col gap-4">
+              
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Hay alguna garantía?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Sí. Sabemos que nuestro proceso funciona. Si no recuperas tu inversión (ROI) en 1 año, te reembolsaremos tu dinero y te pagaremos $1,000 adicionales.
+                  </div>
+                </div>
+              </div>
+      
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Cuánto tardaré en ganar dinero?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Entre 7 y 30 días después de comenzar con cualquiera de las opciones, puedes estar generando ingresos.
+                  </div>
+                </div>
+              </div>
+      
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Cuánto tiempo necesito dedicar?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Después de completar nuestro proceso automatizado de 5 pasos, solo necesitarás unas 2 horas a la semana para gestionar el equipo.
+                  </div>
+                </div>
+              </div>
+      
+              <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                  <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Es esto legal y estoy protegido?</span>
+                  <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                </button>
+                <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                  <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                    Sí, tener una Agencia de OnlyFans es totalmente legal. Proporcionamos todos los contratos y documentos legales para asegurar que estás 100% protegido.
+                  </div>
+                </div>
+              </div>
+      
+               <div class="faq-item group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 isolate">
+                  <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 blur-[50px] rounded-full pointer-events-none"></div>
+                  <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100/30 blur-[50px] rounded-full pointer-events-none"></div>
+                  <div class="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+                  <button class="faq-btn relative z-10 w-full text-left p-6 flex justify-between items-start gap-4 text-slate-800 font-bold text-lg focus:outline-none">
+                    <span class="leading-tight group-hover:text-primary transition-colors duration-300">¿Por qué una modelo daría el 50% de sus ganancias?</span>
+                    <span class="iconify text-slate-300 group-hover:text-primary transition-colors duration-300 min-w-[24px]" data-icon="solar:add-circle-linear" data-width="24" data-height="24"></span>
+                  </button>
+                  <div class="faq-content relative z-10 max-h-0 overflow-hidden transition-all duration-100 ease-in-out">
+                    <div class="p-6 pt-0 text-slate-500 leading-relaxed text-base font-medium">
+                      Porque sin un buen manager la mayoría no supera los $1,000/mes. Con nuestro marketing, pueden ganar 10 veces más.
+                    </div>
+                  </div>
+                </div>
+      
+            </div>
+          </div>
+        </div>
+    </section>
+      
+    <section class="py-24 bg-white relative overflow-hidden font-sans">
+  
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+          
+          <div class="relative rounded-[2.5rem] p-12 md:p-16 text-center overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 isolate">
+            
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 blur-[80px] rounded-full pointer-events-none"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-100/40 blur-[80px] rounded-full pointer-events-none"></div>
+            
+            <div class="absolute inset-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat mix-blend-overlay pointer-events-none"></div>
+      
+            <div class="relative z-10 flex flex-col items-center">
+              
+              <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
+                ¿Listo para <span class="text-primary relative inline-block">Dominar</span> tu Nicho?
+              </h2>
+              
+              <p class="text-slate-500 text-lg md:text-xl mb-10 max-w-xl mx-auto font-medium leading-relaxed">
+                  Aceptamos a menos del 5% de los solicitantes para mantener nuestros estándares de servicio de élite. Aplica hoy para asegurar tu auditoría.
+              </p>
+      
+              <div class="flex flex-col sm:flex-row items-center gap-6">
+                
+                <a href="apply.html" class="group relative inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white text-sm font-bold pl-1 pr-6 py-1 rounded-full shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-primary/50 hover:-translate-y-0.5 border border-white/10">
+                  <span class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0">
+                    <span class="iconify text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" data-icon="solar:rocket-2-bold-duotone"></span>
+                  </span>
+                  <span class="tracking-wide py-2">Iniciar Solicitud</span>
+                </a>
+      
+                <div class="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-wide">
+                  <span class="iconify text-primary text-lg" data-icon="solar:check-circle-bold"></span>
+                  Sin pagos por adelantado
+                </div>
+              </div>
+      
+            </div>
+          </div>
+      
+        </div>
+    </section>
+  </main>
+
+  <footer class="py-20 bg-lilac-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        <div class="md:col-span-5">
+          <a href="#" class="flex items-center hover:opacity-90 transition-opacity mb-6">
+            <img src="../images/logo-lumina.png" alt="Lumina Talent" class="h-10 w-auto object-contain">
+          </a>
+          <p class="text-slate-500 leading-relaxed mb-8 max-w-sm">
+            El socio de gestión premier para creadores digitales de élite. Combinamos datos, tecnología y estrategia para construir marcas personales de 7 cifras.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-100">
+              <span class="iconify" data-icon="ph:instagram-logo-bold"></span>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-100">
+              <span class="iconify" data-icon="ph:twitter-logo-bold"></span>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm border border-slate-100">
+              <span class="iconify" data-icon="ph:telegram-logo-bold"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-bold text-slate-800 mb-6">Agencia</h4>
+          <ul class="space-y-4 text-sm text-slate-500">
+            <li><a href="#expertise" class="hover:text-primary transition-colors">Servicios</a></li>
+            <li><a href="#results" class="hover:text-primary transition-colors">Resultados</a></li>
+            <li><a href="apply.html" class="hover:text-primary transition-colors">Unirse</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-bold text-slate-800 mb-6">Legal</h4>
+          <ul class="space-y-4 text-sm text-slate-500">
+            <li><a href="privacy.html" class="hover:text-primary transition-colors">Privacidad</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition-colors">Términos</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3">
+          <h4 class="font-bold text-slate-800 mb-6">Contacto</h4>
+          <ul class="space-y-4 text-sm text-slate-500">
+            <li><a href="mailto:talent@luminatalent.com" class="hover:text-primary transition-colors">info@luminatalent.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+        <p>&copy; 2025 Lumina Talent Agency. Todos los derechos reservados.</p>
+        <p>Diseñado para la Élite.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Menu
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+      });
+
+      // 2. Navbar Scroll Effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('shadow-md', 'bg-white/95');
+          navbar.classList.remove('bg-white/80');
+        } else {
+          navbar.classList.remove('shadow-md', 'bg-white/95');
+          navbar.classList.add('bg-white/80');
+        }
+      });
+
+      // 3. Animations on Scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate-on-scroll, .animate-fade-up').forEach(el => observer.observe(el));
+
+      // 4. FAQ Accordion
+      document.querySelectorAll('.faq-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = button.parentElement;
+          const content = item.querySelector('.faq-content');
+          
+          // Toggle current
+          item.classList.toggle('active');
+          if (item.classList.contains('active')) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = null;
+          }
+
+          // Close others
+          document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item && other.classList.contains('active')) {
+              other.classList.remove('active');
+              other.querySelector('.faq-content').style.maxHeight = null;
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
