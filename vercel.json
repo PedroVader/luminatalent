@@ -11,6 +11,16 @@
         "source": "/apply",
         "destination": "/es/apply",
         "permanent": false
+      },
+      {
+        "source": "/privacy",
+        "destination": "/es/privacy",
+        "permanent": false
+      },
+      {
+        "source": "/terms",
+        "destination": "/es/terms",
+        "permanent": false
       }
     ]
   }
