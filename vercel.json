@@ -6,6 +6,11 @@
         "source": "/", 
         "destination": "/es", 
         "permanent": false 
+      },
+      {
+        "source": "/apply",
+        "destination": "/es/apply",
+        "permanent": false
       }
     ]
   }
