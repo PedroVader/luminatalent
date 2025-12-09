@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
 
   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -92,7 +92,6 @@
 
   <main class="pt-16 min-h-screen flex flex-col lg:flex-row">
     
-    <!-- SECCIÓN IZQUIERDA -->
     <section class="lg:w-1/2 bg-transparent relative overflow-hidden flex flex-col justify-center py-20 px-8 lg:px-16 lg:fixed lg:h-full lg:top-0 lg:left-0 z-0 pointer-events-none lg:pointer-events-auto">
       <div class="relative z-10 max-w-lg mx-auto lg:max-w-none text-center lg:text-left mt-8 lg:mt-0">
         <div class="mb-12 animate-fade-up mt-10">
@@ -119,13 +118,11 @@
       </div>
     </section>
 
-    <!-- SECCIÓN DERECHA -->
     <section class="lg:w-1/2 lg:ml-auto bg-white/70 backdrop-blur-xl border-l border-white/20 relative z-10 flex flex-col min-h-screen supports-[backdrop-filter]:bg-white/60 mt-10">
       
       <div class="flex-grow flex items-center justify-center py-20 px-6 lg:px-16">
         <div class="w-full max-w-lg">
           
-          <!-- Barra de Progreso -->
           <div class="mb-10">
             <div class="h-1 w-full bg-slate-200/50 rounded-full overflow-hidden">
               <div id="progressBar" class="h-full bg-primary transition-all duration-500 ease-out" style="width: 33%"></div>
@@ -135,29 +132,45 @@
 
           <form id="applicationForm" class="relative" novalidate>
               
-            <!-- PASO 1: Identidad -->
             <div class="form-step active transition-all duration-500" data-step="1">
               <h3 class="text-2xl font-bold text-slate-900 mb-2">Tu Identidad</h3>
               <p class="text-slate-500 text-sm mb-8">Cuéntanos quién eres y dónde encontrarte.</p>
               
-              <div class="space-y-6">
+              <div class="space-y-5">
+                
                 <div class="space-y-2">
                   <label for="fullName" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Nombre Completo *</label>
                   <input type="text" id="fullName" name="fullName" placeholder="Ej: Elena K." required class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
                   <p class="error-message" id="fullNameError">Por favor ingresa tu nombre</p>
                 </div>
+                
                 <div class="space-y-2">
                   <label for="email" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Email *</label>
                   <input type="email" id="email" name="email" placeholder="tu@email.com" required class="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
                   <p class="error-message" id="emailError">Por favor ingresa un email válido</p>
                 </div>
+
+                <div class="space-y-2">
+                  <label for="phoneNumber" class="text-xs font-bold text-slate-500 uppercase tracking-wider">WhatsApp / Teléfono *</label>
+                  <div class="flex gap-3">
+                    <div class="relative w-[140px] shrink-0">
+                      <select id="countrySelect" class="w-full appearance-none pl-4 pr-8 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm text-slate-700 font-medium cursor-pointer truncate">
+                        </select>
+                      <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none iconify" data-icon="solar:alt-arrow-down-linear"></span>
+                    </div>
+                    
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="600 123 456" required maxlength="20" class="flex-1 w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
+                  </div>
+                  <p class="error-message" id="phoneError">Ingresa un número válido</p>
+                </div>
+
                 <div class="space-y-2">
                   <label for="socialHandle" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Instagram / TikTok (@Usuario) *</label>
                   <div class="relative">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 iconify" data-icon="ph:at-bold"></span>
                     <input type="text" id="socialHandle" name="socialHandle" placeholder="tu_usuario" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all backdrop-blur-sm">
                   </div>
-                  <p class="error-message" id="socialHandleError">Por favor ingresa tu usuario de redes sociales</p>
+                  <p class="error-message" id="socialHandleError">Por favor ingresa tu usuario</p>
                 </div>
               </div>
 
@@ -168,7 +181,6 @@
               </div>
             </div>
 
-            <!-- PASO 2: Métricas -->
             <div class="form-step hidden opacity-0 translate-x-8 transition-all duration-500" data-step="2">
               <h3 class="text-2xl font-bold text-slate-900 mb-2">Tus Métricas</h3>
               <p class="text-slate-500 text-sm mb-8">Necesitamos saber tu punto de partida.</p>
@@ -212,7 +224,6 @@
               </div>
             </div>
 
-            <!-- PASO 3: Ambiciones -->
             <div class="form-step hidden opacity-0 translate-x-8 transition-all duration-500" data-step="3">
               <h3 class="text-2xl font-bold text-slate-900 mb-2">Tus Ambiciones</h3>
               <p class="text-slate-500 text-sm mb-8">¿Qué te impide escalar ahora mismo?</p>
@@ -241,7 +252,6 @@
 
           </form>
 
-          <!-- Alerta de Error -->
           <div id="formErrorAlert" class="hidden mt-6 p-4 bg-red-50 border border-red-200 rounded-xl">
             <p class="text-red-600 text-sm font-medium flex items-center gap-2">
               <span class="iconify" data-icon="solar:danger-triangle-bold"></span>
@@ -251,7 +261,6 @@
         </div>
       </div>
 
-      <!-- Carrusel de Plataformas -->
       <div class="w-full border-t border-white/20 pt-8 pb-8 mt-auto bg-white/40 backdrop-blur-md">
         <div class="max-w-full mx-auto">
           <p class="text-center text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6">Plataformas Dominadas</p>
@@ -280,7 +289,6 @@
         </div>
       </div>
 
-      <!-- Footer -->
       <footer class="py-16 bg-white/40 backdrop-blur-md border-t border-white/20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
@@ -341,29 +349,41 @@
 
   <script>
     // =====================================================
-    // CONFIGURACIÓN AIRTABLE
+    // 1. CONFIGURACIÓN
     // =====================================================
-    const AIRTABLE_CONFIG = {
-      apiKey: 'patMu9V0Z6muWjZ7s.1335c1505beb603d4e93acccd9fa48816cc74bc32e40e225da09edf326b55e9c',
-      baseId: 'appMJKEzoqfvZPJB6',
-      tableName: 'tblkZdELPS4JSzXdL',
-      webhookUrl: null
-    };
+    const WEBHOOK_URL = 'https://hook.eu1.make.com/nhhg55htavr4wcjbs2pcodwaaq3dswn5';
+
+    const countries = [
+      { name: "España", code: "ES", dial: "+34", flag: "🇪🇸" },
+      { name: "México", code: "MX", dial: "+52", flag: "🇲🇽" },
+      { name: "Colombia", code: "CO", dial: "+57", flag: "🇨🇴" },
+      { name: "Argentina", code: "AR", dial: "+54", flag: "🇦🇷" },
+      { name: "Chile", code: "CL", dial: "+56", flag: "🇨🇱" },
+      { name: "Perú", code: "PE", dial: "+51", flag: "🇵🇪" },
+      { name: "EE.UU.", code: "US", dial: "+1", flag: "🇺🇸" },
+      { name: "Ecuador", code: "EC", dial: "+593", flag: "🇪🇨" },
+      { name: "Venezuela", code: "VE", dial: "+58", flag: "🇻🇪" },
+      { name: "Dom. Rep.", code: "DO", dial: "+1", flag: "🇩🇴" },
+      { name: "Uruguay", code: "UY", dial: "+598", flag: "🇺🇾" },
+      { name: "Otro", code: "OT", dial: "+", flag: "🌍" }
+    ];
 
     // =====================================================
-    // OBJETO DE DATOS DEL FORMULARIO
+    // 2. OBJETO DE DATOS
     // =====================================================
     const formData = {
       fullName: '',
       email: '',
+      phone: '',       
+      country: '',     
       socialHandle: '',
       monthlyRevenue: '',
-      totalFollowers: '',
+      totalFollowers: 0,
       biggestObstacle: ''
     };
 
     // =====================================================
-    // ELEMENTOS DEL DOM
+    // 3. ELEMENTOS DEL DOM
     // =====================================================
     const form = document.getElementById('applicationForm');
     const progressBar = document.getElementById('progressBar');
@@ -371,29 +391,77 @@
     const formErrorAlert = document.getElementById('formErrorAlert');
     const formErrorMessage = document.getElementById('formErrorMessage');
 
-    const fullNameInput = document.getElementById('fullName');
-    const emailInput = document.getElementById('email');
-    const socialHandleInput = document.getElementById('socialHandle');
-    const totalFollowersInput = document.getElementById('totalFollowers');
-    const biggestObstacleInput = document.getElementById('biggestObstacle');
+    const inputs = {
+      fullName: document.getElementById('fullName'),
+      email: document.getElementById('email'),
+      countrySelect: document.getElementById('countrySelect'),
+      phoneNumber: document.getElementById('phoneNumber'),
+      socialHandle: document.getElementById('socialHandle'),
+      totalFollowers: document.getElementById('totalFollowers'),
+      biggestObstacle: document.getElementById('biggestObstacle')
+    };
+
     const revenueRadios = document.querySelectorAll('input[name="monthlyRevenue"]');
 
     // =====================================================
-    // FUNCIONES DE VALIDACIÓN
+    // 4. INICIALIZACIÓN Y LÓGICA DE TELÉFONO
+    // =====================================================
+    function initCountries() {
+      // Limpiar y rellenar selector
+      inputs.countrySelect.innerHTML = '';
+      countries.forEach(c => {
+        const option = document.createElement('option');
+        option.value = c.dial;
+        option.text = `${c.flag} ${c.dial}`;
+        option.setAttribute('data-country', c.name);
+        inputs.countrySelect.appendChild(option);
+      });
+
+      // Valor por defecto (España)
+      inputs.countrySelect.value = "+34";
+
+      // Al cambiar país, foco al input para seguir escribiendo
+      inputs.countrySelect.addEventListener('change', () => {
+        inputs.phoneNumber.focus();
+      });
+    }
+
+    // --- FORMATEO Y LÍMITE DE CARACTERES EN TIEMPO REAL ---
+    inputs.phoneNumber.addEventListener('input', (e) => {
+      // 1. Quitar todo lo que no sea número
+      let val = e.target.value.replace(/\D/g, ''); 
+      
+      // 2. LIMITAR A 15 DÍGITOS (Estándar internacional)
+      if (val.length > 15) {
+        val = val.substring(0, 15);
+      }
+      
+      // 3. Añadir espacios visuales cada 3 dígitos
+      val = val.replace(/(\d{3})(?=\d)/g, '$1 '); 
+      
+      // 4. Asignar valor formateado
+      e.target.value = val;
+      
+      // 5. Limpiar errores visuales
+      inputs.phoneNumber.classList.remove('input-error');
+      document.getElementById('phoneError').classList.remove('visible');
+    });
+
+    initCountries();
+
+    // =====================================================
+    // 5. VALIDACIÓN
     // =====================================================
     function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
     function showError(inputElement, errorId) {
       inputElement.classList.add('input-error');
+      if(inputElement.id === 'phoneNumber') {
+        document.getElementById('countrySelect').classList.add('input-error');
+      }
       document.getElementById(errorId).classList.add('visible');
-    }
-
-    function clearError(inputElement, errorId) {
-      inputElement.classList.remove('input-error');
-      document.getElementById(errorId).classList.remove('visible');
     }
 
     function clearAllErrors() {
@@ -402,35 +470,56 @@
       formErrorAlert.classList.add('hidden');
     }
 
+    // --- PASO 1 ---
     function validateStep1() {
       let isValid = true;
       clearAllErrors();
 
-      if (!fullNameInput.value.trim()) {
-        showError(fullNameInput, 'fullNameError');
+      // Nombre
+      if (!inputs.fullName.value.trim()) {
+        showError(inputs.fullName, 'fullNameError');
         isValid = false;
       }
 
-      if (!emailInput.value.trim() || !validateEmail(emailInput.value)) {
-        showError(emailInput, 'emailError');
+      // Email
+      if (!inputs.email.value.trim() || !validateEmail(inputs.email.value)) {
+        showError(inputs.email, 'emailError');
         isValid = false;
       }
 
-      if (!socialHandleInput.value.trim()) {
-        showError(socialHandleInput, 'socialHandleError');
+      // Teléfono: Validar longitud mínima (6 dígitos reales)
+      const rawPhone = inputs.phoneNumber.value.replace(/\s/g, ''); // Quitamos espacios para contar
+      if (rawPhone.length < 6) {
+        showError(inputs.phoneNumber, 'phoneError');
+        isValid = false;
+      }
+
+      // Social
+      if (!inputs.socialHandle.value.trim()) {
+        showError(inputs.socialHandle, 'socialHandleError');
         isValid = false;
       }
 
       if (isValid) {
-        formData.fullName = fullNameInput.value.trim();
-        formData.email = emailInput.value.trim();
-        // Limpiar @ inicial y comillas del handle
-        formData.socialHandle = socialHandleInput.value.trim().replace(/^@/, '').replace(/["""'']/g, '');
+        formData.fullName = inputs.fullName.value.trim();
+        formData.email = inputs.email.value.trim();
+        
+        // UNIÓN DE DATOS: Prefijo + Número
+        const prefix = inputs.countrySelect.value;
+        const number = inputs.phoneNumber.value.trim(); // Número formateado (con espacios) o limpio
+        formData.phone = `${prefix} ${number}`; 
+
+        // Guardar país
+        const selectedOption = inputs.countrySelect.options[inputs.countrySelect.selectedIndex];
+        formData.country = selectedOption.getAttribute('data-country');
+
+        formData.socialHandle = inputs.socialHandle.value.trim().replace(/^@/, '').replace(/["']/g, '');
       }
 
       return isValid;
     }
 
+    // --- PASO 2 ---
     function validateStep2() {
       let isValid = true;
       clearAllErrors();
@@ -441,37 +530,38 @@
         isValid = false;
       }
 
-      if (!totalFollowersInput.value || totalFollowersInput.value < 0) {
-        showError(totalFollowersInput, 'followersError');
+      if (!inputs.totalFollowers.value || inputs.totalFollowers.value < 0) {
+        showError(inputs.totalFollowers, 'followersError');
         isValid = false;
       }
 
       if (isValid) {
         formData.monthlyRevenue = selectedRevenue.value;
-        formData.totalFollowers = totalFollowersInput.value;
+        formData.totalFollowers = parseInt(inputs.totalFollowers.value) || 0;
       }
 
       return isValid;
     }
 
+    // --- PASO 3 ---
     function validateStep3() {
       let isValid = true;
       clearAllErrors();
 
-      if (!biggestObstacleInput.value.trim()) {
-        showError(biggestObstacleInput, 'obstacleError');
+      if (!inputs.biggestObstacle.value.trim()) {
+        showError(inputs.biggestObstacle, 'obstacleError');
         isValid = false;
       }
 
       if (isValid) {
-        formData.biggestObstacle = biggestObstacleInput.value.trim();
+        formData.biggestObstacle = inputs.biggestObstacle.value.trim();
       }
 
       return isValid;
     }
 
     // =====================================================
-    // NAVEGACIÓN DE PASOS
+    // 6. NAVEGACIÓN
     // =====================================================
     function goToStep(stepNumber) {
       document.querySelectorAll('.form-step').forEach(step => {
@@ -488,93 +578,67 @@
       }, 10);
 
       stepCount.innerText = stepNumber;
-      
       if (stepNumber === 1) progressBar.style.width = '33%';
       if (stepNumber === 2) progressBar.style.width = '66%';
       if (stepNumber === 3) progressBar.style.width = '100%';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.scrollY > 100) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
     // =====================================================
-    // ENVÍO A AIRTABLE
+    // 7. ENVÍO WEBHOOK
     // =====================================================
-    async function submitToAirtable() {
-      if (AIRTABLE_CONFIG.webhookUrl) {
-        const response = await fetch(AIRTABLE_CONFIG.webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fullName: formData.fullName,
-            email: formData.email,
-            socialHandle: formData.socialHandle,
-            monthlyRevenue: formData.monthlyRevenue,
-            totalFollowers: parseInt(formData.totalFollowers),
-            biggestObstacle: formData.biggestObstacle
-          })
-        });
-
-        if (!response.ok) throw new Error('Error al enviar el formulario');
-        return response.json();
-      }
-
-      const url = `https://api.airtable.com/v0/${AIRTABLE_CONFIG.baseId}/${encodeURIComponent(AIRTABLE_CONFIG.tableName)}`;
-      
-      const response = await fetch(url, {
+    async function submitForm() {
+      const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_CONFIG.apiKey}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          records: [{
-            fields: {
-              'Full Name': formData.fullName,
-              'Email': formData.email,
-              'Social Handle': formData.socialHandle,
-              'Monthly Revenue': formData.monthlyRevenue,
-              'Total Followers': parseInt(formData.totalFollowers),
-              'Biggest Obstacle': formData.biggestObstacle
-            }
-          }]
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,         
+          country: formData.country,     
+          socialHandle: formData.socialHandle,
+          monthlyRevenue: formData.monthlyRevenue,
+          totalFollowers: formData.totalFollowers,
+          biggestObstacle: formData.biggestObstacle
         })
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Error al enviar a Airtable');
+        throw new Error('Error al enviar');
       }
 
-      return response.json();
+      return { success: true };
     }
 
     // =====================================================
-    // EVENT LISTENERS
+    // 8. EVENTOS Y LISTENERS
     // =====================================================
-    document.getElementById('btnStep1Next').addEventListener('click', () => {
-      if (validateStep1()) goToStep(2);
-    });
-
+    document.getElementById('btnStep1Next').addEventListener('click', () => { if(validateStep1()) goToStep(2); });
     document.getElementById('btnStep2Back').addEventListener('click', () => goToStep(1));
-
-    document.getElementById('btnStep2Next').addEventListener('click', () => {
-      if (validateStep2()) goToStep(3);
-    });
-
+    document.getElementById('btnStep2Next').addEventListener('click', () => { if(validateStep2()) goToStep(3); });
     document.getElementById('btnStep3Back').addEventListener('click', () => goToStep(2));
 
-    fullNameInput.addEventListener('input', () => clearError(fullNameInput, 'fullNameError'));
-    emailInput.addEventListener('input', () => clearError(emailInput, 'emailError'));
-    socialHandleInput.addEventListener('input', () => clearError(socialHandleInput, 'socialHandleError'));
-    totalFollowersInput.addEventListener('input', () => clearError(totalFollowersInput, 'followersError'));
-    biggestObstacleInput.addEventListener('input', () => clearError(biggestObstacleInput, 'obstacleError'));
-    
-    revenueRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.getElementById('revenueError').classList.remove('visible');
-      });
+    // Limpieza general de inputs
+    ['fullName', 'email', 'socialHandle', 'totalFollowers', 'biggestObstacle'].forEach(id => {
+       const el = document.getElementById(id);
+       if(el) {
+         el.addEventListener('input', () => {
+            el.classList.remove('input-error');
+            const parent = el.closest('div'); 
+            const msg = parent.querySelector('.error-message') || parent.parentElement.querySelector('.error-message');
+            if(msg) msg.classList.remove('visible');
+         });
+       }
     });
 
+    revenueRadios.forEach(radio => {
+      radio.addEventListener('change', () => document.getElementById('revenueError').classList.remove('visible'));
+    });
+
+    // Envío del Formulario
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -588,11 +652,11 @@
       submitBtn.disabled = true;
 
       try {
-        await submitToAirtable();
+        await submitForm();
         window.location.href = 'success.html';
       } catch (error) {
         console.error('Error de envío:', error);
-        formErrorMessage.textContent = error.message || 'Algo salió mal. Por favor intenta de nuevo.';
+        formErrorMessage.textContent = 'Algo salió mal. Por favor intenta de nuevo.';
         formErrorAlert.classList.remove('hidden');
         submitBtn.innerHTML = originalBtnText;
         submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
@@ -601,15 +665,17 @@
       }
     });
 
+    // Navegación con tecla Enter
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault();
         const activeStep = document.querySelector('.form-step.active');
-        const stepNumber = parseInt(activeStep.dataset.step);
+        if(!activeStep) return;
+        const step = parseInt(activeStep.dataset.step);
         
-        if (stepNumber === 1 && validateStep1()) goToStep(2);
-        else if (stepNumber === 2 && validateStep2()) goToStep(3);
-        else if (stepNumber === 3) form.dispatchEvent(new Event('submit'));
+        if (step === 1 && validateStep1()) goToStep(2);
+        else if (step === 2 && validateStep2()) goToStep(3);
+        else if (step === 3) form.dispatchEvent(new Event('submit'));
       }
     });
   </script>
